@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { X, Check, Clock, MapPin, ArrowUpRight, Activity, User, Sparkles } from 'lucide-react';
+import { X, Menu, Check, Clock, MapPin, ArrowUpRight, Activity, User, Sparkles } from 'lucide-react';
 
 import HERO_IMAGE from './assets/images/hero_melanin_clinic_1794232425188.jpg';
 import DERM_IMAGE from './assets/images/block_medical_dermatology_1794232425848.jpg';
@@ -161,6 +161,7 @@ const CLINICS = [
 ];
 
 export default function App() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
   const [bookingType, setBookingType] = useState<'assessment' | 'specialist'>('assessment');
   const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
@@ -233,18 +234,18 @@ export default function App() {
       className="font-primary bg-neutral-background text-text-primary overflow-x-hidden min-h-screen flex flex-col w-full relative"
     >
       {/* Navigation Bar */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-6 px-4 md:px-16 pointer-events-none">
-        <nav className="w-full max-w-[1728px] pointer-events-auto">
-          <div className="flex items-center justify-between gap-8 bg-brand-secondary/90 backdrop-blur-md rounded-full shadow-nav border border-border-soft px-4 py-2 h-[56px] w-full">
+      <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-3 sm:pt-6 px-3 sm:px-6 md:px-16 pointer-events-none">
+        <nav className="w-full max-w-[1728px] pointer-events-auto relative">
+          <div className="flex items-center justify-between gap-4 sm:gap-8 bg-brand-secondary/95 backdrop-blur-md rounded-full shadow-nav border border-border-soft px-4 sm:px-6 py-2 h-[56px] w-full">
             {/* Logo */}
-            <a href="#top" className="flex items-center ml-4 whitespace-nowrap shrink-0">
-              <span className="text-brand-primary font-primary text-xl font-bold tracking-widest uppercase leading-tight">
+            <a href="#top" className="flex items-center ml-1 sm:ml-4 whitespace-nowrap shrink-0">
+              <span className="text-brand-primary font-primary text-lg sm:text-xl font-bold tracking-widest uppercase leading-tight">
                 Lumina
               </span>
             </a>
 
-            {/* Desktop Nav Links */}
-            <div className="hidden md:flex items-center gap-1">
+            {/* Desktop Nav Links (Visible on Large screens) */}
+            <div className="hidden lg:flex items-center gap-1">
               <a
                 href="#method"
                 className="nav-item-hover px-4 py-2 rounded-full text-brand-primary text-sm font-medium whitespace-nowrap shrink-0"
@@ -271,15 +272,79 @@ export default function App() {
               </a>
             </div>
 
-            {/* CTA Button */}
-            <button
-              type="button"
-              onClick={() => openBooking('assessment')}
-              className="bg-brand-primary text-brand-secondary rounded-full px-5 py-2 text-sm font-medium hover:opacity-90 transition-opacity whitespace-nowrap shrink-0 cursor-pointer"
-            >
-              Book Consultation
-            </button>
+            {/* Right actions: CTA + Mobile Hamburger */}
+            <div className="flex items-center gap-2 sm:gap-3">
+              <button
+                type="button"
+                onClick={() => openBooking('assessment')}
+                className="bg-brand-primary text-brand-secondary rounded-full px-3.5 sm:px-5 py-2 text-xs sm:text-sm font-medium hover:opacity-90 transition-opacity whitespace-nowrap shrink-0 cursor-pointer"
+              >
+                Book Consultation
+              </button>
+
+              {/* Hamburger Button (Mobile & Tablet) */}
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label="Toggle navigation menu"
+                className="lg:hidden p-2 text-brand-primary hover:bg-brand-primary/10 rounded-full transition-colors cursor-pointer flex items-center justify-center shrink-0"
+              >
+                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
+            </div>
           </div>
+
+          {/* Mobile & Tablet Navigation Overlay Drawer */}
+          {mobileMenuOpen && (
+            <div className="lg:hidden absolute top-[68px] left-0 right-0 bg-brand-secondary/98 backdrop-blur-xl border border-border-soft rounded-3xl p-6 shadow-2xl z-50 animate-in fade-in slide-in-from-top-4 duration-200">
+              <div className="flex flex-col gap-3">
+                <a
+                  href="#method"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="px-4 py-3 rounded-xl hover:bg-brand-primary/10 text-brand-primary text-base font-semibold transition-colors"
+                >
+                  The Method
+                </a>
+                <a
+                  href="#services"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="px-4 py-3 rounded-xl hover:bg-brand-primary/10 text-brand-primary text-base font-semibold transition-colors"
+                >
+                  Treatments &amp; Protocols
+                </a>
+                <a
+                  href="#performance"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="px-4 py-3 rounded-xl hover:bg-brand-primary/10 text-brand-primary text-base font-semibold transition-colors"
+                >
+                  Skin Diagnostics Lab
+                </a>
+                <a
+                  href="#contact"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="px-4 py-3 rounded-xl hover:bg-brand-primary/10 text-brand-primary text-base font-semibold transition-colors"
+                >
+                  Clinics &amp; Locations
+                </a>
+
+                <div className="pt-4 border-t border-border-soft flex flex-col gap-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      openBooking('assessment');
+                    }}
+                    className="w-full py-3 bg-brand-primary text-brand-secondary rounded-full font-semibold text-sm text-center shadow-md cursor-pointer"
+                  >
+                    Book Skin Consultation
+                  </button>
+                  <p className="text-center text-xs text-text-secondary">
+                    Victoria Island • Lekki Phase 1 • Abuja Maitama
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
         </nav>
       </header>
 
@@ -287,9 +352,9 @@ export default function App() {
         {/* Hero Section */}
         <section className="relative w-full flex flex-col items-center overflow-visible">
           {/* Background Hero Image */}
-          <div className="absolute top-0 left-0 w-full h-[825px] z-10 overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-[620px] sm:h-[720px] md:h-[825px] z-10 overflow-hidden">
             {/* Increased overlay opacity for better text contrast */}
-            <div className="absolute inset-0 bg-black/50 z-[11]"></div>
+            <div className="absolute inset-0 bg-black/55 z-[11]"></div>
             <img
               src={HERO_IMAGE}
               alt="Lumina luxury medical dermatology and melanin skin clinic in Victoria Island, Lagos"
@@ -299,29 +364,29 @@ export default function App() {
           </div>
 
           {/* Hero Content */}
-          <div className="relative z-20 flex flex-col items-center justify-center w-full max-w-[1728px] h-[825px] pt-[75px] pb-[168px] px-6 md:px-16">
-            <div className="max-w-[1100px] text-center mb-10" data-animation-on-scroll="">
+          <div className="relative z-20 flex flex-col items-center justify-center w-full max-w-[1728px] min-h-[620px] sm:min-h-[720px] md:h-[825px] pt-[90px] sm:pt-[100px] md:pt-[75px] pb-[80px] sm:pb-[110px] md:pb-[168px] px-4 sm:px-6 md:px-16">
+            <div className="max-w-[1100px] text-center mb-6 sm:mb-10" data-animation-on-scroll="">
               <AnimatedHeading
                 as="h1"
                 text="Clinical Aesthetics Crafted for Melanin Excellence"
-                className="text-text-on-dark font-primary text-6xl md:text-8xl text-tight font-medium"
+                className="text-text-on-dark font-primary text-3xl sm:text-5xl md:text-7xl lg:text-8xl text-tight font-medium"
               />
-              <p className="text-text-on-dark text-lg md:text-xl mt-8 max-w-2xl mx-auto font-medium leading-relaxed drop-shadow-md">
+              <p className="text-text-on-dark text-sm sm:text-base md:text-xl mt-4 sm:mt-8 max-w-2xl mx-auto font-medium leading-relaxed drop-shadow-md">
                 Where consultant dermatology meets cellular luxury in Lagos and Abuja. Experience bespoke laser, hyperpigmentation, and barrier-repair protocols calibrated exclusively for melanin-rich skin.
               </p>
             </div>
 
-            <div className="flex items-center gap-4" data-animation-on-scroll="">
+            <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4" data-animation-on-scroll="">
               <button
                 type="button"
                 onClick={() => openBooking('assessment')}
-                className="bg-brand-secondary text-brand-primary rounded-full px-8 py-4 text-base font-semibold hover:bg-white transition-colors shadow-cta cursor-pointer whitespace-nowrap"
+                className="bg-brand-secondary text-brand-primary rounded-full px-6 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base font-semibold hover:bg-white transition-colors shadow-cta cursor-pointer whitespace-nowrap"
               >
                 Book Skin Analysis
               </button>
               <a
                 href="#services"
-                className="bg-transparent text-brand-secondary border border-brand-secondary rounded-full px-8 py-4 text-base font-semibold hover:bg-brand-secondary hover:text-brand-primary transition-all whitespace-nowrap"
+                className="bg-transparent text-brand-secondary border border-brand-secondary rounded-full px-6 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base font-semibold hover:bg-brand-secondary hover:text-brand-primary transition-all whitespace-nowrap text-center"
               >
                 The Treatments
               </a>
@@ -329,8 +394,8 @@ export default function App() {
           </div>
 
           {/* Action Blocks (Grid Overlay) */}
-          <div className="relative z-30 w-full max-w-[1728px] px-6 md:px-16 -mt-32">
-            <div className="grid grid-cols-1 md:grid-cols-3 bg-brand-secondary rounded-xl overflow-hidden shadow-2xl min-h-[500px] w-full border border-border-soft">
+          <div className="relative z-30 w-full max-w-[1728px] px-4 sm:px-6 md:px-16 -mt-10 sm:-mt-16 md:-mt-32">
+            <div className="grid grid-cols-1 md:grid-cols-3 bg-brand-secondary rounded-xl overflow-hidden shadow-2xl min-h-[440px] md:min-h-[500px] w-full border border-border-soft">
               {/* Block 1: Medical Dermatology */}
               <a
                 href="#method"

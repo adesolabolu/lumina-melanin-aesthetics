@@ -1,0 +1,497 @@
+Below is the component for your context <!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Lumina - Precision Physiotherapy &amp; Human Performance</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  
+<style type="text/tailwindcss">@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply m-0 p-0;
+  }
+}
+
+.action-block-hover img {
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.action-block-hover:hover img {
+  transform: scale(1.05);
+}
+
+.nav-item-hover {
+  transition: background-color 0.3s ease;
+}
+
+.nav-item-hover:hover {
+  background-color: rgba(159, 84, 52, 0.05);
+}
+
+.text-tight {
+  line-height: 0.96;
+  letter-spacing: -0.03em;
+}
+
+/* Base Scroll Reveal Classes */
+.animate-on-scroll-hidden {
+  opacity: 0;
+  transition: all 1s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+/* Zig-Zag Directional Hidden States */
+.animate-from-left {
+  transform: translateX(-100px);
+}
+
+.animate-from-right {
+  transform: translateX(100px);
+}
+
+.animate-on-scroll-visible {
+  opacity: 1;
+  transform: translateX(0) translateY(0);
+}
+
+/* Alphabet by Alphabet Animation */
+.char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.animate-on-scroll-visible .char {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Custom scrollbar for a premium feel */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #9F5434;
+}</style><script src="https://cdn.tailwindcss.com"></script><script>tailwind.config = {
+  important: '#app-root',
+  theme: {
+    extend: {
+      colors: {
+        'brand-primary': 'rgb(159, 84, 52)',
+        'brand-secondary': 'rgb(254, 245, 240)',
+        'brand-accent': 'rgb(254, 245, 240)',
+        'neutral-background': 'rgb(255, 255, 255)',
+        'neutral-surface': 'rgb(254, 245, 240)',
+        'text-primary': 'rgb(35, 31, 32)',
+        'text-secondary': 'rgba(35, 31, 32, 0.7)',
+        'text-on-dark': 'rgb(254, 245, 240)',
+        'border-soft': 'rgba(159, 84, 52, 0.12)',
+      },
+      fontFamily: {
+        'primary': ['Archivo', 'sans-serif'],
+        'secondary': ['Archivo', 'sans-serif'],
+      },
+      borderRadius: {
+        'none': '0',
+        'sm': '8px',
+        'md': '16px',
+        'lg': '24px',
+        'xl': '32px',
+        'full': '1000px',
+      },
+      boxShadow: {
+        'nav': '0 4px 24px 0 rgba(111, 59, 36, 0.05)',
+        'cta': '0 10px 30px rgba(159, 84, 52, 0.15)',
+      },
+      spacing: {
+        'section': '120px',
+      }
+    }
+  }
+}</script></head>
+<body id="app-root">
+  <div class="font-primary bg-neutral-background text-text-primary overflow-x-hidden min-h-screen flex flex-col w-full relative">
+    
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-50 flex justify-center pt-6 px-4 md:px-16 pointer-events-none">
+      <nav class="w-full max-w-[1728px] pointer-events-auto">
+        <div class="flex items-center justify-between bg-brand-secondary/90 backdrop-blur-md rounded-full shadow-nav border border-border-soft px-4 py-2 h-[56px] w-full">
+          <!-- Logo -->
+          <a href="/" class="flex items-center ml-4">
+            <span class="text-brand-primary font-primary text-xl font-bold tracking-widest uppercase leading-tight">Lumina</span>
+          </a>
+
+          <!-- Desktop Nav Links -->
+          <div class="hidden md:flex items-center gap-1">
+            <a href="#method" class="nav-item-hover px-4 py-2 rounded-full text-brand-primary text-sm font-medium">The Method</a>
+            <a href="#services" class="nav-item-hover px-4 py-2 rounded-full text-brand-primary text-sm font-medium">Services</a>
+            <a href="#performance" class="nav-item-hover px-4 py-2 rounded-full text-brand-primary text-sm font-medium">Performance</a>
+            <a href="#contact" class="nav-item-hover px-4 py-2 rounded-full text-brand-primary text-sm font-medium">Clinics</a>
+          </div>
+
+          <!-- CTA Button -->
+          <a href="#book" class="bg-brand-primary text-brand-secondary rounded-full px-5 py-2 text-sm font-medium hover:opacity-90 transition-opacity">
+            Book Assessment
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="flex-grow"><section class="relative w-full flex flex-col items-center overflow-visible">
+  
+  <!-- Background Hero Image -->
+  <div class="absolute top-0 left-0 w-full h-[825px] z-10 overflow-hidden">
+    <!-- Increased overlay opacity for better text contrast -->
+    <div class="absolute inset-0 bg-black/50 z-[11]"></div>
+    <img src="https://images.pexels.com/photos/5793651/pexels-photo-5793651.jpeg?w=1920&amp;h=1080&amp;fit=crop" alt="Serene high-end physiotherapy studio" class="w-full h-full object-cover">
+  </div>
+
+  <!-- Hero Content -->
+  <div class="relative z-20 flex flex-col items-center justify-center w-full max-w-[1728px] h-[825px] pt-[75px] pb-[168px] px-6 md:px-16">
+    <div class="max-w-[1100px] text-center mb-10" data-animation-on-scroll="">
+      <h1 class="text-text-on-dark font-primary text-6xl md:text-8xl text-tight font-medium" data-animate-heading="">
+        Mastering the Art of Precision Movement
+      </h1>
+      <p class="text-text-on-dark text-lg md:text-xl mt-8 max-w-2xl mx-auto font-medium leading-relaxed drop-shadow-md">
+        Where clinical biomechanics meet elite performance. Experience tailored physiotherapy designed to restore, optimize, and elevate your physical potential.
+      </p>
+    </div>
+    
+    <div class="flex items-center gap-4" data-animation-on-scroll="">
+      <a href="#book" class="bg-brand-secondary text-brand-primary rounded-full px-8 py-4 text-base font-semibold hover:bg-white transition-colors shadow-cta">
+        Book Assessment
+      </a>
+      <a href="#services" class="bg-transparent text-brand-secondary border border-brand-secondary rounded-full px-8 py-4 text-base font-semibold hover:bg-brand-secondary hover:text-brand-primary transition-all">
+        The Services
+      </a>
+    </div>
+  </div>
+
+  <!-- Action Blocks (Grid Overlay) -->
+  <div class="relative z-30 w-full max-w-[1728px] px-6 md:px-16 -mt-32">
+    <div class="grid grid-cols-1 md:grid-cols-3 bg-brand-secondary rounded-xl overflow-hidden shadow-2xl min-h-[500px] w-full border border-border-soft">
+      
+      <!-- Block 1: The Method -->
+      <a href="#method" class="action-block-hover flex flex-col border-r border-border-soft group">
+        <div class="p-8 h-[180px] flex flex-col justify-between border-b border-border-soft">
+          <div class="flex items-center justify-between w-full">
+            <span class="text-brand-primary text-xs uppercase tracking-widest font-bold">The Method</span>
+            <svg class="w-5 h-5 text-brand-primary transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7V17"></path>
+            </svg>
+          </div>
+          <h4 class="text-brand-primary text-[28px] leading-[1.1] tracking-tight font-medium max-w-[280px]">
+            Biomechanical Logic &amp; Movement Science
+          </h4>
+        </div>
+        <div class="flex-grow overflow-hidden">
+          <img src="https://images.pexels.com/photos/8540047/pexels-photo-8540047.jpeg?w=800&amp;h=1000&amp;fit=crop" alt="Biomechanical analysis" class="w-full h-full object-cover">
+        </div>
+      </a>
+
+      <!-- Block 2: Performance -->
+      <a href="#performance" class="action-block-hover flex flex-col border-r border-border-soft group">
+        <div class="p-8 h-[180px] flex flex-col justify-between border-b border-border-soft">
+          <div class="flex items-center justify-between w-full">
+            <span class="text-brand-primary text-xs uppercase tracking-widest font-bold">Performance</span>
+            <svg class="w-5 h-5 text-brand-primary transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7V17"></path>
+            </svg>
+          </div>
+          <h4 class="text-brand-primary text-[28px] leading-[1.1] tracking-tight font-medium max-w-[280px]">
+            Elite Conditioning for the Modern Athlete
+          </h4>
+        </div>
+        <div class="flex-grow overflow-hidden">
+          <img src="https://images.pexels.com/photos/6699963/pexels-photo-6699963.jpeg?w=800&amp;h=1000&amp;fit=crop" alt="Elite athlete training" class="w-full h-full object-cover">
+        </div>
+      </a>
+
+      <!-- Block 3: Recovery -->
+      <a href="#contact" class="action-block-hover flex flex-col group">
+        <div class="p-8 h-[180px] flex flex-col justify-between border-b border-border-soft">
+          <div class="flex items-center justify-between w-full">
+            <span class="text-brand-primary text-xs uppercase tracking-widest font-bold">Recovery</span>
+            <svg class="w-5 h-5 text-brand-primary transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7V17"></path>
+            </svg>
+          </div>
+          <h4 class="text-brand-primary text-[28px] leading-[1.1] tracking-tight font-medium max-w-[280px]">
+            Restoring Balance &amp; Kinetic Freedom
+          </h4>
+        </div>
+        <div class="flex-grow overflow-hidden">
+          <img src="https://images.pexels.com/photos/5793909/pexels-photo-5793909.jpeg?w=800&amp;h=1000&amp;fit=crop" alt="Manual therapy session" class="w-full h-full object-cover">
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Our Philosophy Section - ZIG (LEFT) -->
+<section id="method" class="py-32 px-6 md:px-16 bg-white overflow-hidden">
+  <div class="max-w-[1728px] mx-auto" data-animation-on-scroll="" data-animation-direction="left">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+      <div>
+        <span class="text-brand-primary text-xs uppercase tracking-[0.3em] font-bold block mb-8">The Lumina Method</span>
+        <h2 class="text-5xl md:text-7xl text-tight text-text-primary mb-10" data-animate-heading="">
+          Precision Rehab for Every Body
+        </h2>
+        <div class="space-y-6 text-text-secondary text-lg leading-relaxed max-w-xl">
+          <p>
+            Movement is an exact science. At Lumina, we move beyond generic exercises, utilizing advanced motion capture and muscular data to understand the root cause of physical restriction.
+          </p>
+          <p>
+            Founded by elite sports physicians, our approach bridges the gap between high-performance athletic training and patient-centered rehabilitation.
+          </p>
+        </div>
+        <div class="mt-12 flex flex-col sm:flex-row gap-8">
+          <div class="flex flex-col">
+            <span class="text-brand-primary text-3xl font-medium mb-1">20+</span>
+            <span class="text-xs uppercase tracking-widest text-text-secondary">Clinical Protocols</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-brand-primary text-3xl font-medium mb-1">98%</span>
+            <span class="text-xs uppercase tracking-widest text-text-secondary">Recovery Rate</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-brand-primary text-3xl font-medium mb-1">05</span>
+            <span class="text-xs uppercase tracking-widest text-text-secondary">Specialist Labs</span>
+          </div>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="aspect-[4/5] rounded-lg overflow-hidden border border-border-soft">
+          <img src="https://images.pexels.com/photos/5888158/pexels-photo-5888158.jpeg?w=800&amp;h=1000&amp;fit=crop" alt="Physiotherapist portrait" class="w-full h-full object-cover">
+        </div>
+        <div class="absolute -bottom-12 -left-12 bg-brand-secondary p-10 rounded-lg border border-border-soft shadow-xl hidden md:block max-w-[300px]">
+          <p class="text-brand-primary italic text-lg leading-tight">
+            "True strength is the absence of restriction and the mastery of kinetic flow."
+          </p>
+          <p class="mt-4 text-xs font-bold uppercase tracking-widest text-text-primary">— Marc Thorne, Clinical Director</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services Grid - ZAG (RIGHT) -->
+<section id="services" class="relative z-20 py-32 px-6 md:px-16 bg-brand-secondary border-y border-border-soft overflow-hidden">
+  <div class="max-w-[1728px] mx-auto" data-animation-on-scroll="" data-animation-direction="right">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+      <div class="max-w-2xl">
+        <span class="text-brand-primary text-xs uppercase tracking-[0.3em] font-bold block mb-8">Clinical Services</span>
+        <h2 class="text-5xl md:text-7xl text-tight text-text-primary" data-animate-heading="">
+          Evidence-Based Interventions
+        </h2>
+      </div>
+      <a href="#" class="inline-flex items-center gap-2 text-brand-primary font-bold uppercase tracking-widest text-xs border-b border-brand-primary pb-2 group">
+        View Full Service Menu
+        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[1px] bg-border-soft border border-border-soft overflow-hidden rounded-lg">
+      <!-- Service 1 -->
+      <div class="bg-white p-10 group hover:bg-brand-secondary transition-colors">
+        <div class="w-12 h-12 rounded-full border border-border-soft flex items-center justify-center mb-10 text-brand-primary">01</div>
+        <h3 class="text-2xl font-medium mb-4 text-text-primary">Sports Rehabilitation</h3>
+        <p class="text-text-secondary text-sm leading-relaxed mb-10">Return to play faster with protocols used by world-class athletes.</p>
+        <div class="aspect-square rounded-lg overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
+          <img src="https://images.pexels.com/photos/20860595/pexels-photo-20860595.jpeg?w=600&amp;h=600&amp;fit=crop" alt="Sports rehab" class="w-full h-full object-cover">
+        </div>
+      </div>
+      <!-- Service 2 -->
+      <div class="bg-white p-10 group hover:bg-brand-secondary transition-colors">
+        <div class="w-12 h-12 rounded-full border border-border-soft flex items-center justify-center mb-10 text-brand-primary">02</div>
+        <h3 class="text-2xl font-medium mb-4 text-text-primary">Post-Surgical Care</h3>
+        <p class="text-text-secondary text-sm leading-relaxed mb-10">Precision recovery plans following orthopedic procedures to ensure optimal outcomes.</p>
+        <div class="aspect-square rounded-lg overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
+          <img src="https://images.pexels.com/photos/20860595/pexels-photo-20860595.jpeg?w=600&amp;h=600&amp;fit=crop" alt="Post-surgical rehab" class="w-full h-full object-cover">
+        </div>
+      </div>
+      <!-- Service 3 -->
+      <div class="bg-white p-10 group hover:bg-brand-secondary transition-colors">
+        <div class="w-12 h-12 rounded-full border border-border-soft flex items-center justify-center mb-10 text-brand-primary">03</div>
+        <h3 class="text-2xl font-medium mb-4 text-text-primary">Gait &amp; Run Analysis</h3>
+        <p class="text-text-secondary text-sm leading-relaxed mb-10">Video-based biomechanical breakdown to improve efficiency and reduce injury risk.</p>
+        <div class="aspect-square rounded-lg overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
+          <img src="https://images.pexels.com/photos/7097316/pexels-photo-7097316.jpeg?w=600&amp;h=600&amp;fit=crop" alt="Gait analysis" class="w-full h-full object-cover">
+        </div>
+      </div>
+      <!-- Service 4 -->
+      <div class="bg-white p-10 group hover:bg-brand-secondary transition-colors">
+        <div class="w-12 h-12 rounded-full border border-border-soft flex items-center justify-center mb-10 text-brand-primary">04</div>
+        <h3 class="text-2xl font-medium mb-4 text-text-primary">Manual Therapy</h3>
+        <p class="text-text-secondary text-sm leading-relaxed mb-10">Advanced mobilization and soft tissue techniques to resolve chronic pain.</p>
+        <div class="aspect-square rounded-lg overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
+          <img src="https://images.pexels.com/photos/17623843/pexels-photo-17623843.jpeg?w=600&amp;h=600&amp;fit=crop" alt="Manual therapy" class="w-full h-full object-cover">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Performance Metric Section - ZIG (LEFT) -->
+<section id="performance" class="sticky top-0 z-10 min-h-screen flex items-center py-32 px-6 md:px-16 bg-text-primary text-white overflow-hidden">
+  <div class="max-w-[1728px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full" data-animation-on-scroll="" data-animation-direction="left">
+    <div>
+      <span class="text-brand-secondary text-xs uppercase tracking-[0.3em] font-bold block mb-8">Performance Optimization</span>
+      <h2 class="text-5xl md:text-7xl text-tight mb-8" data-animate-heading="">Data-Driven Human Evolution</h2>
+      <p class="text-white/70 text-lg leading-relaxed mb-12 max-w-xl">
+        We utilize elite-grade monitoring systems—the same used by professional football and F1 teams—to track your progress in real-time. From muscle activation levels to joint torque metrics, our data ensures your training is as precise as it is effective.
+      </p>
+      <div class="grid grid-cols-2 gap-8 border-t border-white/10 pt-12">
+        <div>
+          <h4 class="text-brand-secondary text-xl font-medium mb-2 uppercase tracking-widest">Real-Time</h4>
+          <p class="text-white/40 text-sm">Force plate analysis for symmetry and explosive power metrics.</p>
+        </div>
+        <div>
+          <h4 class="text-brand-secondary text-xl font-medium mb-2 uppercase tracking-widest">Objective</h4>
+          <p class="text-white/40 text-sm">EMG muscle testing to identify hidden weaknesses and imbalances.</p>
+        </div>
+      </div>
+    </div>
+    <div class="relative">
+      <div class="aspect-video rounded-xl overflow-hidden border border-white/10 bg-black shadow-2xl">
+        <img src="https://images.pexels.com/photos/12969403/pexels-photo-12969403.jpeg?w=1200&amp;h=800&amp;fit=crop" alt="Data performance lab" class="w-full h-full object-cover opacity-60">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="w-20 h-20 rounded-full border border-white/30 flex items-center justify-center backdrop-blur-sm group cursor-pointer hover:bg-white/10 transition-colors">
+            <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / Appointment Section - ZAG (RIGHT) -->
+<section id="book" class="relative z-20 py-40 px-6 md:px-16 bg-neutral-surface text-center overflow-hidden border-y border-border-soft">
+  <div class="absolute inset-0 opacity-5 pointer-events-none">
+    <img src="https://images.pexels.com/photos/8472000/pexels-photo-8472000.jpeg?w=1920&amp;fit=crop" alt="Technical background" class="w-full h-full object-cover">
+  </div>
+  <div class="max-w-4xl mx-auto relative z-10" data-animation-on-scroll="" data-animation-direction="right">
+    <span class="text-brand-primary text-xs uppercase tracking-[0.4em] font-bold block mb-10">Invest in Your Performance</span>
+    <h2 class="text-6xl md:text-8xl text-tight text-text-primary mb-12" data-animate-heading="">Unlock Your Full Kinetic Potential</h2>
+    <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
+      <a href="#" class="bg-brand-primary text-white rounded-full px-12 py-5 text-lg font-semibold hover:opacity-90 transition-all shadow-cta w-full sm:w-auto">
+        Schedule Assessment
+      </a>
+      <a href="#" class="bg-transparent text-brand-primary border border-brand-primary/30 rounded-full px-12 py-5 text-lg font-semibold hover:bg-brand-primary/5 transition-all w-full sm:w-auto">
+        Speak to a Specialist
+      </a>
+    </div>
+    <p class="mt-12 text-text-secondary/40 text-xs uppercase tracking-widest">Clinics in London • Aspen • Zurich</p>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Page specific logic if any
+});
+</script></main>
+
+    <footer class="bg-brand-primary text-brand-secondary pt-24 pb-12 overflow-hidden">
+      <div class="max-w-[1728px] mx-auto px-6 md:px-16">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-white/10 pb-16" data-animation-on-scroll="" data-animation-direction="left">
+          <div class="col-span-1 md:col-span-1">
+            <h3 class="text-2xl font-bold tracking-widest uppercase mb-6" data-animate-heading="">Lumina</h3>
+            <p class="text-brand-secondary/70 text-sm leading-relaxed max-w-xs" data-animate-heading="">
+              Precision-engineered physical therapy. We optimize human movement through advanced biomechanical science and elite-level care.
+            </p>
+          </div>
+          <div>
+            <h4 class="font-bold text-sm uppercase mb-6 tracking-wider" data-animate-heading="">Locations</h4>
+            <ul class="space-y-4 text-sm text-brand-secondary/70">
+              <li><a href="#" class="hover:text-white">Mayfair Performance Centre</a></li>
+              <li><a href="#" class="hover:text-white">Aspen Rehabilitation</a></li>
+              <li><a href="#" class="hover:text-white">Zurich Sports Lab</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold text-sm uppercase mb-6 tracking-wider" data-animate-heading="">Services</h4>
+            <ul class="space-y-4 text-sm text-brand-secondary/70">
+              <li><a href="#" class="hover:text-white">Post-Surgical Rehab</a></li>
+              <li><a href="#" class="hover:text-white">Gait Analysis</a></li>
+              <li><a href="#" class="hover:text-white">Manual Therapy</a></li>
+              <li><a href="#" class="hover:text-white">Sports Performance</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold text-sm uppercase mb-6 tracking-wider" data-animate-heading="">Connect</h4>
+            <ul class="space-y-4 text-sm text-brand-secondary/70">
+              <li><a href="#" class="hover:text-white">Clinical Journal</a></li>
+              <li><a href="#" class="hover:text-white">LinkedIn Performance</a></li>
+              <li><a href="#" class="hover:text-white">Patient Portal</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-12 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] uppercase tracking-[0.2em] font-medium text-brand-secondary/40" data-animation-on-scroll="" data-animation-direction="right">
+          <p>© 2024 Lumina Physical Systems. All Rights Reserved.</p>
+          <div class="flex gap-8">
+            <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#" class="hover:text-white transition-colors">Terms of Clinical Care</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Prepare Word-by-Word Headings (Preserving whole words)
+      document.querySelectorAll('[data-animate-heading]').forEach(heading => {
+        const text = heading.textContent.trim().split(/\s+/);
+        heading.innerHTML = '';
+
+        text.forEach((word, wordIdx) => {
+          // Create a span for the entire word
+          const span = document.createElement('span');
+          span.textContent = word;
+          span.className = 'char'; // Using the existing CSS class for animation styles
+          // Incremental delay based on word index for a sequential reveal
+          span.style.transitionDelay = `${wordIdx * 0.12}s`;
+          heading.appendChild(span);
+
+          // Add space after word if not the last word
+          if (wordIdx < text.length - 1) {
+            const space = document.createElement('span');
+            space.innerHTML = '&nbsp;';
+            heading.appendChild(space);
+          }
+        });
+      });
+
+      // 2. Setup Scroll Observer
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-on-scroll-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('[data-animation-on-scroll]').forEach(el => {
+        el.classList.add('animate-on-scroll-hidden');
+        
+        // Apply Directional Classes
+        if (el.dataset.animationDirection === 'left') {
+          el.classList.add('animate-from-left');
+        } else if (el.dataset.animationDirection === 'right') {
+          el.classList.add('animate-from-right');
+        }
+        
+        observer.observe(el);
+      });
+    });
+  </script>
+
+</body></html>
